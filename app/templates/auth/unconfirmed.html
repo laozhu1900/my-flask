@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Flasky - Confirm your accont{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>
+        您好, {{ current_user.username }}!
+    </h1>
+    <h3>您还没有验证您的邮箱</h3>
+    <p>
+        在您访问网站时候，您需要首先验证您的账户，您应该在您提供的邮箱里收到了一封邮件，包含验证验证链接
+    </p>
+    <p>
+       需要重新发送吗？
+        <a href="{{ url_for('auth.resend_confirmation') }}">点击这里</a>
+    </p>
+</div>
+{% endblock %}

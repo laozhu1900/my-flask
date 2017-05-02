@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Flasky{% endblock %}
+
+{% block page_content %}
+
+
+<div class="panel panel-success">
+  <!-- Default panel contents -->
+  <div class="panel-heading">共 {{ count }} 个搜索结果</div>
+  {% for result in results %}
+  <div class="panel-body">
+
+    <p>题干：{{ result.context }}
+      {% if current_user.role_id == 1 or current_user.role_id == 3 %}
+      <a href="{{ url_for('ques.edit_ques', qid = result.id)}}"><button type="button" class="btn btn-info">修改</button></a>
+      <a href="{{ url_for('ques.delete', qid = result.id)}}"><button type="button" class="btn btn-danger">删除</button></a>
+      {% endif %}
+    </p>
+
+    {% if result.question_type_id == 3 %}
+     <ul class="list-group">
+      <li class="list-group-item">选项：{{ result.options}}</li>
+
+    {% endif%}
+
+      <!--{% if current_user.role_id == 1 or 3%}-->
+      <li class="list-group-item">答案：{{ result.answer}}</li>
+      <li class="list-group-item">
+        本题的正确率：{{ result.accuracy }} &nbsp;&nbsp;&nbsp;
+        本题的出现次数：{{ result.appearance }}
+      </li>
+      <!--{% endif%}-->
+    </ul>
+  </div>
+
+  <!-- List group -->
+
+  {% endfor %}
+</div>
+
+{% endblock %}

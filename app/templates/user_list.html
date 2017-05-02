@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Exam{% endblock %}
+
+{% block page_content %}
+
+<br/>
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">用户列表</div>
+
+
+  <!-- Table -->
+  <table class="table">
+    <!-- On cells (`td` or `th`) -->
+    <tr>
+      <td class="default">序号id</td>
+      <td class="default">用户名</td>
+      <td class="default">权限</td>
+      <td class="default">邮箱</td>
+      <td class="default">操作</td>
+    </tr>
+    {% for result in results %}
+    <tr>
+      <td class="default">{{ result.id }}</td>
+      <td class="default">{{ result.username }}</td>
+      <td class="default">
+        {% if result.role_id == 2 %}
+           普通用户
+        {% else %}
+           教师
+        {% endif%}
+      </td>
+      <td class="default">{{ result.email }}</td>
+      <td class="default">
+        <a href="{{ url_for('main.edit_user', uid=result.id) }}"><button type="button" class="btn btn-default" >修改</button></a>
+        <a href="{{ url_for('main.delete_user', uid=result.id) }}"><button type="button" class="btn btn-default">删除</button></a>
+      </td>
+    </tr>
+    {% endfor%}
+  </table>
+</div>
+{% endblock %}

@@ -1,2 +1,2 @@
-# my-flask
-my school design
+#flasky
+ip: 115.159.114.195 (外网地址)

@@ -1,0 +1,106 @@
+需求设计
+    1.用户登陆，权限（普通用户，教师，管理员）
+        用户资料显示：
+	    普通用户：个人信息
+	    教师:个人信息，添加的模块信息：（时间，学科，题目）
+	    管理员：模块修改信息
+	
+    2.用户注册:
+	邮箱的正确性验证，用户是否存在验证
+	邮箱验证，注册成功
+	注意：密码加密进入数据库
+
+    3.个人信息修改
+
+    4.查找题目
+	通过知识点，学科类型，难易度，题型，内容，对题目进行查找
+	普通用户：
+	    显示题目题干,并可以显示答案，但不能修改题目，可以在题干的评论区提供意见或建议，建议直接发送到教师端
+        教师：
+
+	    显示题目题干,并可以显示答案，但不能修改题目，可以回答建议，然后可以修改题目
+
+    5.试卷生成
+	只能教师，管理员
+	有系统所定义的，对试题的难易度，曝光度，知识点进行自动匹配，自动生成试卷
+
+    6. 试题上传：
+	新建模块
+	可以手动单条记录输入
+	批量导入
+	Excel中每一列定义好其内容，比如选择题，前面题干，后面选项，答案
+	Excel中只能有一种题型
+	对excel文件进行解析，然后在页面上显示，出题者根据自己的定义完成页面的操	作，选择每一道题的知识点，难易度对其进行录入进数据库
+
+
+
+view design:
+
+    welcome:index
+          
+	*search:()
+	login and register:
+	    User:READ,WRITE
+	    Teacher:READ, WRRTE, UPDATE
+ 	    Admininstrator:ROOT
+
+    search page:
+	   
+	   question, Answer, accuracy, comment
+
+    user page:
+
+          choice: start a exam
+
+    teacher page:
+
+	  choice: update the current question
+		  add some question 
+                      excel word txt
+		  solve the comment
+          
+     administrator page:
+	
+	  teacher and user permission
+
+
+topic  
+ id
+ subject_id
+ count
+ creator
+ create_date
+ description
+
+question
+ id
+ question_type
+ context
+ answer
+ degree
+ appearance
+ create_time
+ creator
+ subject
+ point
+ accuracy
+
+
+
+20160520：
+
+    word组卷后试题的下载，分为试卷和答案
+    添加题型
+    
+
+
+
+
+
+
+
+
+
+
+
+

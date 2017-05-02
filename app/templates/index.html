@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Exam{% endblock %}
+
+{% block page_content %}
+
+<br/>
+<br/>
+    <!--<h1>你好, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}游客{% endif %}!</h1>-->
+<div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+</div>
+
+
+<!--<div class="row">-->
+  <!--<div class="col-lg-6">-->
+    <!--<div class="input-group">-->
+     <!-- -->
+      <!--<input type="text" class="form-control" placeholder="请输入要查询的内容">-->
+      <!--<span class="input-group-btn">-->
+         <!-- -->
+        <!--<button class="btn btn-primary" type="submit">提交</button>-->
+      <!--</span>-->
+    <!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
+  <!--</div>&lt;!&ndash; /.col-lg-6 &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
+
+{% endblock %}

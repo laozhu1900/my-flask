@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Exam{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>学科添加</h1>
+</div>
+
+{% if message ==''%}
+<div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+</div>
+{% else %}
+<div class="col-md-4">
+    <h2>{{ message }}</h2>
+</div>
+{% endif %}
+{% endblock %}

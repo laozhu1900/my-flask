@@ -1,0 +1,6 @@
+-r common.txt
+ForgeryPy
+Pygments
+colorama
+httpie
+requests

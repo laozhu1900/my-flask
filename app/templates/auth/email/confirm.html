@@ -1,0 +1,8 @@
+<p>亲爱的 {{ user.username }},</p>
+<p>欢迎来到 <b>Exam</b>!</p>
+<p>清进行邮件认证<a href="{{ url_for('auth.confirm', token=token, _external=True) }}">点击这里</a>.</p>
+<p>或者你可以将下列地址复制到你的浏览器里:</p>
+<p>{{ url_for('auth.confirm', token=token, _external=True) }}</p>
+<p>谢谢,</p>
+<p>The Exam Team</p>
+<p><small>Note: replies to this email address are not monitored.</small></p>

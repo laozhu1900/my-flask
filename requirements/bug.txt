@@ -1,0 +1,23 @@
+bug:
+    1. use mysql (done)
+    2. email account confirm (need to finish)
+    3. can't send email (need to finish)
+    4. password reset (need to add)
+    5. email reset (need to add)
+    6. how to add columns (need to finish)
+    7. qi niu cloud avatar(later need to finish)
+    8. use local to save avatar (need to save)
+    9. front desgin, wtf.form
+    10. 防盗链
+    11. 总体的models需要重新架构
+    12. 权限管理
+    13. 试题的更新与删除
+
+
+
+
+20160507
+
+    待解决的问题：多知识点的问题
+                试题的添加问题
+                分页

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Exam{% endblock %}
+
+{% block page_content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+<script type="text/javascript" src="{{ url_for('static', filename='js/lib/jquery-1.9.1.min.js') }}"></script>
+
+<script type="text/javascript">
+$(function(){
+    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+    $('.tree li.parent_li > span').on('click', function (e) {
+        var children = $(this).parent('li.parent_li').find(' > ul > li');
+        if (children.is(":visible")) {
+            children.hide('fast');
+            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+        } else {
+            children.show('fast');
+            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+        }
+        e.stopPropagation();
+    });
+});
+</script>
+
+<div class="tree well">
+<ul>
+	<li>
+		<span><i class="icon-folder-open"></i> {{subject}}</span>
+		<ul>
+			{% for chapter in results.keys() %}
+			<li>
+				<span><i class="icon-minus-sign"></i>{{ chapter }}</span>
+				<ul>
+					{% for kn in results[chapter]%}
+					<li>
+						<a href="{{ url_for('ques.kn_point', kn=kn)}}"><span><i class="icon-leaf"></i>{{ kn }}</span></a>
+					</li>
+					{% endfor%}
+				</ul>
+			</li>
+			{%endfor%}
+		</ul>
+	</li>
+
+</ul>
+</div>
+
+{% endblock %}
+

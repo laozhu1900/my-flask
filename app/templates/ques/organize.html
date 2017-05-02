@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Exam{% endblock %}
+
+{% block page_content %}
+
+{% if not results%}
+<!--<form class="form-inline" method="post" action="{{url_for('ques.organizeResults')}}">-->
+    选择题个数:{{ ques_num['选择题个数']}}<br/>
+    判断题个数:{{ ques_num['判断题个数']}}<br/>
+    填空题个数:{{ ques_num['填空题个数']}}
+    <br/>
+    <br/>
+    <div class="col-md-4">
+
+        {{ wtf.quick_form(form) }}
+
+        <!--{{ form.choice_num(class='form-control',placeholder="请输入选择题个数")}}-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+       <!--{{ form.judgement_num(class='form-control',placeholder="请输入判断题个数")}}-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+        <!--{{ form.blank_num(class='form-control',placeholder="请输入填空题个数")}}-->
+    </div>
+{% endif%}
+
+    <!--{{ form.submit(class='btn btn-success') }}-->
+
+<!--</form>-->
+<br/>
+{% if results %}
+<div class="panel panel-success">
+  <!-- Default panel contents -->
+  <div class="panel-heading">组卷试题信息如下：</div>
+  {% for result in results %}
+  <div class="panel-body">
+
+    <p>题干：{{ result.context }}
+      <!--{% if current_user.role_id == 1 %}-->
+      <!--<button type="button" class="btn btn-info">修改</button>-->
+      <!--<button type="button" class="btn btn-danger">删除</button>-->
+      <!--{% endif%}-->
+    </p>
+
+    {% if result.question_type_id == 3 %}
+     <ul class="list-group">
+      <li class="list-group-item">选项：{{ result.options}}</li>
+     </ul>
+    {% endif%}
+    <ul class="list-group">
+      <li class="list-group-item">答案：{{ result.answer}}</li>
+    </ul>
+  </div>
+  {% endfor %}
+
+
+</div>
+ <a href="{{ url_for('ques.download_paper', filename=filename) }}">
+     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">试题下载</button></a>
+ <a href="{{ url_for('ques.download_answer', answer_name=answer_name) }}">
+     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">答案下载</button></a>
+
+{% endif%}
+{% endblock %}

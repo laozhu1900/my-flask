@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Exam{% endblock %}
+
+{% block page_content %}
+
+<form action="{{ url_for('ques.checkAnswer',qid = results.id)}}" method="post">
+    <div class="panel panel-success">
+
+        <div class="panel-heading">选择题</div>
+
+        <div class="panel-body">
+
+            <p>题号：{{ results.context }}</p>
+            <ul class="list-group">
+                <li class="list-group-item">选项：{{ results.options}}</li>
+                <li class="list-group-item">{{ form.choiceAnswer(placeholder="请输入答案") }}</li>
+            </ul>
+
+        </div>
+
+    </div>
+    {{ form.submit(class='btn btn-success') }}
+
+    <!--<div class="panel panel-success">-->
+        <!--<div class="panel-heading">判断题</div>-->
+        <!--{% for result in results['判断题'] %}-->
+        <!--<div class="panel-body">-->
+
+            <!--<p>题干：{{ result.context }}</p>-->
+            <!--<ul class="list-group">-->
+                <!--<li class="list-group-item">对, 错</li>-->
+                <!--<li class="list-group-item">答案：<input name="{{ result.id }}"/></li>-->
+
+            <!--</ul>-->
+
+        <!--</div>-->
+        <!--{% endfor %}-->
+    <!--</div>-->
+
+    <!--<div class="panel panel-success">-->
+    <!--<div class="panel-heading">填空题</div>-->
+        <!--{% for result in results['填空题'] %}-->
+        <!--<div class="panel-body">-->
+
+            <!--<p>题干：{{ result.context }}</p>-->
+            <!--<ul class="list-group">-->
+                 <!--<li class="list-group-item">答案：<input name="{{ result.id }}"/></li>-->
+            <!--</ul>-->
+
+        <!--</div>-->
+        <!--{% endfor %}-->
+
+    <!--</div>-->
+
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+
+{% block title %}Exam{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>试题添加</h1>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='js/lib/jquery-1.7.2.min.js') }}"></script>
+<a href="{{ url_for('ques.addResults', qt_name='选择题')}}"><button type="button" class="btn btn-default">选择题</button></a>
+<a href="{{ url_for('ques.addResults', qt_name='判断题')}}"><button type="button" class="btn btn-default">判断题</button></a>
+<a href="{{ url_for('ques.addResults', qt_name='填空题')}}"><button type="button" class="btn btn-default">填空题</button></a>
+<br/>
+<br/>
+<script type="text/javascript">
+
+
+        function judge(x){
+            var state = document.getElementById(x).value;
+            if (state==""){
+                $("#"+x).show()
+        }
+
+        function getValue(){
+            var num = document.getElementById('num').value;
+
+            var kn_point_1 = document.getElementById('kn_point_1');
+            var kn_point_2 = document.getElementById('kn_point_2');
+            var kn_point_3 = document.getElementById('kn_point_3');
+            var kn_point_4 = document.getElementById('kn_point_4');
+
+            if(num==1){
+
+                kn_point_1.options.add(new Option('k1','v1'));
+                kn_point_1.options.add(new Option('k2','v2'));
+                $("#kn_point_1").show();
+                $("#kn_point_2").hide();
+                $("#kn_point_3").hide();
+                $("#kn_point_4").hide()
+
+            }else if(num==2){
+                kn_point_1.options.add(new Option('k1', 'v1'));
+                kn_point_1.options.add(new Option('k2', 'v2'));
+                kn_point_2.options.add(new Option('k1', 'v1'));
+                kn_point_2.options.add(new Option('k2', 'v2'));
+                $("#kn_point_1").show();
+                $("#kn_point_2").show();
+                $("#kn_point_3").hide();
+                $("#kn_point_4").hide()
+            }else if(num==3) {
+                kn_point_1.options.add(new Option('k1', 'v1'));
+                kn_point_1.options.add(new Option('k2', 'v2'));
+                kn_point_2.options.add(new Option('k1', 'v1'));
+                kn_point_2.options.add(new Option('k2', 'v2'));
+                kn_point_3.options.add(new Option('k1', 'v1'));
+                kn_point_3.options.add(new Option('k2', 'v2'));
+                $("#kn_point_1").show();
+                $("#kn_point_2").show();
+                $("#kn_point_3").show();
+                $("#kn_point_4").hide()
+
+            }else if(num==4) {
+                kn_point_1.options.add(new Option('k1', 'v1'));
+                kn_point_1.options.add(new Option('k2', 'v2'));
+                kn_point_2.options.add(new Option('k1', 'v1'));
+                kn_point_2.options.add(new Option('k2', 'v2'));
+                kn_point_3.options.add(new Option('k1', 'v1'));
+                kn_point_3.options.add(new Option('k2', 'v2'));
+                kn_point_4.options.add(new Option('k1', 'v1'));
+                kn_point_4.options.add(new Option('k2', 'v2'));
+                $("#kn_point_1").show();
+                $("#kn_point_2").show();
+                $("#kn_point_3").show();
+                $("#kn_point_4").show()
+            }
+
+        }
+
+    </script>
+
+{% if qt_name %}
+
+<form action="{{ url_for('ques.addComplete',qt_name=qt_name)}}" method="post">
+
+
+    <div >
+
+        <p>请输入试题内容：</p>
+        {{ form.context(class='form-control', rows='2')}}<span style="display: none;color: red" >输入不能为空</span>
+         {% if qt_name == "选择题" %}
+        <p>请输入试题选项：</p>
+        {{ form.options(class='form-control', rows='2')}}<span style="display: none;color: red">输入不能为空</span>
+         {% endif %}
+        <p>请输入试题答案：</p>
+       {{ form.answer(class='form-control', rows='2')}}<span style="display: none;color: red">输入不能为空</span>
+
+        <!--<p>请输入难易度：</p>-->
+       <!--{{ form.degree(class='form-control' )}}-->
+    </div>
+    <p>请输入试题知识点难易度：</p>
+    <label for="kn_point_degree"></label>
+    <select class='btn btn-default dropdown-toggle') id='kn_point_degree' name="kn_point_degree">
+
+        <option value ="1">简单</option>
+        <option value ="2">普通</option>
+        <option value ="3">困难</option>
+        <option value ="4">挑战</option>
+    </select>
+    <br/>
+    <!--<p>请输入试题知识点个数：</p>-->
+    <!--<label for="kn_point_counts"></label>-->
+    <!--<select class='btn btn-default dropdown-toggle') id='kn_point_counts' name="kn_point_counts">-->
+
+        <!--<option value ="1">1</option>-->
+        <!--<option value ="2">2</option>-->
+        <!--<option value ="3">3</option>-->
+        <!--<option value ="4">4</option>-->
+    <!--</select>-->
+    <br/>
+
+    <p>请输入试题知识点：</p>
+    <label for="kn_point_id_1"></label>
+    <select name="kn_point_id_1" class="form-control" id='kn_point_id_1'>
+        {% for kn_point in kn_points %}
+        <option value="{{ kn_point.name }}">{{ kn_point.name }}</option>
+        {% endfor %}
+    </select>
+    <!--<label for="kn_point_2"></label><select id='kn_point_2' style="display:none;"></select>-->
+    <!--<label for="kn_point_3"></label><select id='kn_point_3' style="display:none;"></select>-->
+    <!--<label for="kn_point_4"></label><select id='kn_point_4' style="display:none;"></select>-->
+    <br/>
+    {{ form.submit(class='btn btn-default') }}
+</form>
+<br/>
+<br/>
+<br/>
+{% endif %}
+{% if message %}
+<h1>{{ message }}</h1>
+{% endif %}
+{% endblock %}

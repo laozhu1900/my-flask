@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Exam{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>试题添加</h1>
+</div>
+
+<!--<form action="{{ url_for('ques.addChapterComplete')}}" method="post">-->
+
+    <p>请输入学科名称：</p>
+
+    <select name="subject_id" class="form-control" id='subject_id'>
+        {% for s in subject_list %}
+        <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+    </select>
+   <br/>
+    <div >
+        {{ wtf.quick_form(form) }}
+    </div>
+<!--</form>-->
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Flasky - Edit Profile{% endblock %}
+
+{% block page_content %}
+
+<form action="upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file"/><br/>
+    <input type="submit" value="上传"/>
+</form>
+
+{% endblock %}
